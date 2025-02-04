@@ -23,16 +23,15 @@ df = spark \
 # Convert Kafka value from binary to string
 df = df.selectExpr("CAST(value AS STRING) as json_data")
 
-# Define Schema for Financial Data
+# Define Schema for Financial Data (based on yfinance output)
 schema = StructType() \
-    .add("c", FloatType()) \
-    .add("h", FloatType()) \
-    .add("l", FloatType()) \
-    .add("n", LongType()) \
-    .add("o", FloatType()) \
-    .add("t", LongType()) \
-    .add("v", LongType()) \
-    .add("vw", FloatType()) \
+    .add("Open", FloatType()) \
+    .add("High", FloatType()) \
+    .add("Low", FloatType()) \
+    .add("Close", FloatType()) \
+    .add("Volume", FloatType()) \
+    .add("Dividends", FloatType()) \
+    .add("Stock Splits", FloatType()) \
     .add("symbol", StringType())
 
 # Parse JSON Data
@@ -40,19 +39,15 @@ parsed_df = df.withColumn("data", from_json(col("json_data"), schema))
 
 # Flatten the Data by Extracting Columns
 flattened_df = parsed_df.select(
-    col("data.c").alias("Close"),
-    col("data.h").alias("High"),
-    col("data.l").alias("Low"),
-    col("data.n").alias("Num_Trades"),
-    col("data.o").alias("Open"),
-    col("data.t").alias("Timestamp"),
-    col("data.v").alias("Volume"),
-    col("data.vw").alias("VWAP"),
+    col("data.Open").alias("Open"),
+    col("data.High").alias("High"),
+    col("data.Low").alias("Low"),
+    col("data.Close").alias("Close"),
+    col("data.Volume").alias("Volume"),
+    col("data.Dividends").alias("Dividends"),
+    col("data.Stock Splits").alias("Stock_Splits"),
     col("data.symbol").alias("Symbol")
 )
-
-# Convert 'Timestamp' from milliseconds to a readable format
-flattened_df = flattened_df.withColumn("Formatted_Timestamp", to_timestamp((col("Timestamp") / 1000)))
 
 # Write Stream Output to Console
 query = flattened_df.writeStream \

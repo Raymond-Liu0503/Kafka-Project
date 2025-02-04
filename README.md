@@ -32,6 +32,12 @@ kafka-topics.sh --bootstrap-server localhost:9092 --list
 pip install kafka-python-ng
 pip show kafka-python-ng
 pip install pyspark
+sudo apt install postgresql
+/mnt/c/Users/raymo/Documents/Coding-Programs/KafkaProject/kafka-proj/bin/pip install yfinance
+pip list | grep pyspark
+/mnt/c/Users/raymo/Documents/Coding-Programs/KafkaProject/kafka-proj/bin/pip install pyspark
+
+
 /mnt/c/Users/raymo/Documents/Coding-Programs/KafkaProject/kafka-proj/bin/pip install kafka-python-ng requests
 /mnt/c/Users/raymo/Documents/Coding-Programs/KafkaProject/kafka-proj/bin/pip install influxdb-client
 /mnt/c/Users/raymo/Documents/Coding-Programs/KafkaProject/kafka-proj/bin/pip install 'influxdb-client[ciso]'
