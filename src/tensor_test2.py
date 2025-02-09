@@ -10,7 +10,7 @@ from pmdarima import auto_arima
 import matplotlib.pyplot as plt
 
 # Your Alpha Vantage API key
-api_key = "7HX5TK1UEV1V9TT5"
+api_key = "API_KEY"
 
 # Create a TimeSeries object
 ts = TimeSeries(key=api_key, output_format='pandas')
