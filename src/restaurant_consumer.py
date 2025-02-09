@@ -7,7 +7,7 @@ from llama_cpp import Llama
 from functools import lru_cache
 
 # Mapbox API Key (Replace with your own key)
-MAPBOX_ACCESS_TOKEN = "sk.eyJ1IjoicmF5bW9uZGxpdTA1MDMiLCJhIjoiY202djFpY2MyMDE4cDJqcXFvOW0zbW9tciJ9.BBg-HA_3OmIlD5QkjtHvnw"
+MAPBOX_ACCESS_TOKEN = "MAPBOX_API"
 
 @lru_cache(maxsize=1)
 def load_llm_model():
